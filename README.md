@@ -1,4 +1,5 @@
-dpWasteland
-===========
+Arma3-dpWastelandv3-Stratis
+===========================
 
-ArmA 3 dp Wasteland by CADelta
+ArmA3 - dp Wasteland - currently at version v3.0
+by [CAD] Krycek
