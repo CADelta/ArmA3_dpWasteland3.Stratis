@@ -106,21 +106,39 @@ player createDiaryRecord["changelog",
 player createDiaryRecord["changelog",
 ["[CAD]","
 <br/>3.0<br/>
-		[Added] Revive feature (BTC Revive Lite).<br/>
-		[Added] Dynamic weather system and day/night cycle.<br/>
-		[Added] Some new artwork and color changes.<br/>
+		[Added] Revive System.<br/>
+		[Added] Territory System.<br/>
+		[Added] Day/Night cycle.<br/>
+		[Added] IgiLoad Logistics System.<br/>
+		[Added] Cargo Containers for more convenient storage and transport with R3F and IgiLoad Logistics Systems.<br/>
+		[Added] New sound clip for the Scanner.<br/>
+		[Added] New categories in the Stores.<br/>
+		[Added] Two more Buildings to the Construction Store.<br/>
+		[Added] Two new Planes (Wipeout and Neophron) and the new Tempest Trucks.<br/>
+		[Added] Promote to leader in Group Management.<br/>
 		[Added] New Player Menu GUI.<br/>
-		[Added] Two small towns to the map.<br/>
-		[Added] 12.7mm APDS (Armor Piercing Discarding Sabot) rounds for the Lynx to the Gun Store.<br/>
-		[Update] Hummingbird now spawns with more fuel.<br/>
+		[Added] New Artwork to the main HUD and some color changes.<br/>
+		[Added] Two small towns.<br/>
+		[Added] 12.7mm APDS Ammo to the Gun Store.<br/>
+		[Added] Fuel-Feed to all the Gas Pumps.<br/>
+		[Added] New super effective Cleanup system.<br/>
+		[Added] Two new Mission Objectives categories.<br/>
+		[Added] Ability to rotate objects 45, 90 and 180 degrees.<br/>
+		[Added] Moderator ability too instantly remove all hacked in vehicles.<br/>
+		[Added] New super effective Cleanup system.<br/>
+		[Added] Overall major code optimizations and changes, should give better performance.<br/><br/>
 		[Update] Removed fatigue system. You can now run forever without getting fatigued.<br/>
-		[Update] Moved the spawn area to the open sea. This is to prevent spawn island killing.<br/>
-		[Update] Syphon now works as intended (to use, the vehicle needs to have enough fuel).<br/>
-		[Fixed] Jerry Can could be reused instantly while refueling.<br/>
-		[Fixed] Gas Pumps (Fuel Feeds) are now working.<br/>
-		[Fixed] Clouds not showing.<br/>
-		[Fixed] A lot of Dialog errors due to changes in the latest ArmA Patch (1.10.114700).<br/>
-		[Fixed] Various code optimizations and some bug fixes.<br/>
+		[Update] New spawn area to prevent spawn-island killing.<br/>
+		[Update] Players are now allowed on Xiros ('Spawn Island').<br/><br/>
+		[Fixed] No more Dialog errors.<br/>
+		[Fixed] Independent players no longer receive negative score for killing other Independent players.<br/>
+		[Fixed] Jerry Can was reusable while refueling for extra effect.<br/>
+		[Fixed] Syphon fuel now works as intended, no more getting a full Jerry Can from almost empty vehicles.<br/>
+		[Fixed] Ammo Crates can no longer despawn while in vehicle content.<br/>
+		[Fixed] Corpses (player) no longer despawn right under your nose.<br/>
+		[Fixed] Non-burning vehicles no longer despawn right in front of you.<br/>
+		[Fixed] Towed vehicles no longer despawn.<br/>
+		[Fixed] Buildings and Crates loaded in vehicles now sync. for everyone.<br/>
 <br/>2.5.5<br/>
 		[Fixed] MX SW and MXM had switched names in the Gun Store.<br/>
 		[Fixed] Briefing on the map screen got duplicated again and again after respawning.<br/>
