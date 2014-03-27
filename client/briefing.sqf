@@ -121,7 +121,6 @@ player createDiaryRecord["changelog",
 		[Added] Two small towns.<br/>
 		[Added] 12.7mm APDS Ammo to the Gun Store.<br/>
 		[Added] Fuel-Feed to all the Gas Pumps.<br/>
-		[Added] New super effective Cleanup system.<br/>
 		[Added] Two new Mission Objectives categories.<br/>
 		[Added] Ability to rotate objects 45, 90 and 180 degrees.<br/>
 		[Added] Moderator ability too instantly remove all hacked in vehicles.<br/>
