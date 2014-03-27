@@ -1,0 +1,78 @@
+class Header
+{
+	gameType = Sandbox;
+	minPlayers = 1;
+	maxPlayers = 132;
+};
+
+//Dialog includes
+#include "client\gui\common.hpp"
+
+#include "client\gui\playerMenu\dialog\playerMenu.hpp"
+#include "client\gui\playerMenu\dialog\respawn_dialog.hpp"
+#include "client\gui\playerMenu\dialog\teamkill_dialog.hpp"
+
+#include "client\gui\playerMenu\dialog\lootPlayerMenu.hpp"
+
+#include "client\gui\adminPanel\dialog\dpModMenu.hpp"
+#include "client\gui\adminPanel\dialog\serverCADminMenu.hpp"
+#include "client\gui\adminPanel\dialog\playerManagement.hpp"
+#include "client\gui\adminPanel\dialog\vehicleManagement.hpp"
+
+#include "client\gui\groups\dialog\groupManagement.hpp"
+#include "client\gui\gunStore\dialog\gunshop_settings.hpp"
+#include "client\gui\generalStore\dialog\genstore_settings.hpp"
+#include "client\gui\constructionStore\dialog\constructionstore_settings.hpp"
+
+//3rd party dialogs
+#include "addons\R3F_ARTY_AND_LOG\desc_include.h"					// R3F Logistics Addon
+#include "addons\=BTC=_revive_lite\=BTC=_revive_lite_respawn.h"		// =BTC= Revive Lite Addon
+
+class RscTitles
+{
+	#include "client\gui\hud\dialog\hud.hpp"
+	#include "client\gui\playerMenu\dialog\welcome.hpp"
+};
+
+onLoadName = "dp Wasteland v3.0";
+author = "CADelta";
+loadScreen = "Loading.jpg";
+onLoadMission = "Wasteland is a harsh survival sandbox where 2 teams and independent players fight for survival";
+
+showUAVFeed = 1;
+
+respawn = 3;	// 3 = "BASE"
+respawnDelay = 5;
+respawnVehicleDelay = 60;
+corpseRemovalMinTime = 600;	// seconds
+wreckRemovalMinTime = 600; 	// seconds
+
+//respawnDialog = 0;
+//respawnTemplates[] = {Counter};
+//respawnOnStart = 1;
+aiKills = 1;			// Gives score for AI kills.
+joinUnassigned = 0; 	// 0 = Auto-assigns
+disabledAI = true;
+disableChannels[]={2};
+enableItemsDropping = 0;
+scriptedPlayer = 1;
+
+//*** DEBUG ENABLED ***
+enableDebugConsole = 0;			// 0 = Disabled, 1 = Admins Only, 2 = All.
+//*** REMEMBER TO DISABLE ***
+
+allowFunctionsLog = 0;			// Org = 0
+allowFunctionsRecompile = 0;
+
+class CfgSounds
+{
+	sounds[] = {};
+	class scannerBeep
+	{
+		name = "scanner_beep";
+		// filename, volume, pitch
+		//sound[] = {"fx\beep-01.wav", 1, 1};		// http://www.mediacollege.com/downloads/sound-effects/beep/
+		sound[] = {"fx\MilCom_Scanner30sec.ogg", 1, 1};		// ♫ Edited and put together by [CAD] Krycek ♫
+		titles[] = {};
+	};
+};

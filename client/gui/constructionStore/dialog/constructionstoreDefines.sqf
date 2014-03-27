@@ -1,0 +1,10 @@
+#define constructionshop_DIALOG 2001
+#define constructionshop_con_TEXT 2002
+#define constructionshop_con_list 2003
+#define constructionshop_money 2004
+#define constructionshop_con_pic 2005
+#define constructionshop_con_info 2006
+#define constructionshop_cart 2007
+#define constructionshop_total 2008
+#define constructionshop_buysell 2020
+#define constructionshop_con_Info 2021
