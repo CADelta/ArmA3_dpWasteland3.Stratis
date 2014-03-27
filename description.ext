@@ -39,8 +39,6 @@ author = "CADelta";
 loadScreen = "Loading.jpg";
 onLoadMission = "Wasteland is a harsh survival sandbox where 2 teams and independent players fight for survival";
 
-showUAVFeed = 1;
-
 respawn = 3;	// 3 = "BASE"
 respawnDelay = 5;
 respawnVehicleDelay = 60;
