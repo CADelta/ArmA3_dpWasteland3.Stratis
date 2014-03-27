@@ -7,7 +7,6 @@ diag_log format["****** onPlayerKilled Started ******"];
 
 private ["_corpse","_killer"];
 
-//test 3 CAD JB
 
 // Params [<unit>, <killer>]
 _corpse = _this select 0; 	// dead player

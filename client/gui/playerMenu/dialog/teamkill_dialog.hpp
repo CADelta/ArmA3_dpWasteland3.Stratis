@@ -18,9 +18,9 @@ class TeamkillDialog {
 			moving = true;
 
 			x = 0.25;
-			y = 0.1;
+			y = 0.050;
 			w = 0.90;
-			h = 0.5 * (SafeZoneW / SafeZoneH);
+			h = 0.45 * (SafeZoneW / SafeZoneH);
 		};
 
 		class MainTitle:w_RscText {

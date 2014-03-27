@@ -21,11 +21,6 @@ _totalText = _dialog displayCtrl constructionshop_total;
 _playerMoneyText = _Dialog displayCtrl constructionshop_money;
 _size = lbSize _cartlist;
 
-switch(_switch) do
-{
-	//Buy To Player
-	case 0:
-	{
 		for [{_x = 0}, {_x <= _size}, {_x = _x + 1}] do
 		{
 			_itemText = _cartlist lbText _x;
@@ -40,20 +35,8 @@ switch(_switch) do
 					publicVariableServer "pvar_createBaseObject";
 				};
 			}forEach constructionContainerList;
-		};
 
-		player setVariable["cmoney",_playerMoney - constructionstoreCart,true];
-		_playerMoneyText CtrlsetText format["Cash: $%1", player getVariable "cmoney"];
 
-		constructionstoreCart = 0;
-		_totalText CtrlsetText format["Total: $%1", constructionstoreCart];
-		lbClear _cartlist;
-	};
-	case 1:
-	{
-		for [{_x = 0}, {_x <= _size}, {_x = _x + 1}] do
-		{
-			_itemText = _cartlist lbText _x;
 			{
 				if(_itemText == _x select 0) then
 				{
@@ -65,20 +48,8 @@ switch(_switch) do
 					publicVariableServer "pvar_createBaseObject";
 				};
 			}forEach constructionBuildingList;
-		};
 
-		player setVariable["cmoney",_playerMoney - constructionstoreCart,true];
-		_playerMoneyText CtrlsetText format["Cash: $%1", player getVariable "cmoney"];
 
-		constructionstoreCart = 0;
-		_totalText CtrlsetText format["Total: $%1", constructionstoreCart];
-		lbClear _cartlist;
-	};
-	case 2:
-	{
-		for [{_x = 0}, {_x <= _size}, {_x = _x + 1}] do
-		{
-			_itemText = _cartlist lbText _x;
 			{
 				if(_itemText == _x select 0) then
 				{
@@ -98,5 +69,3 @@ switch(_switch) do
 		constructionstoreCart = 0;
 		_totalText CtrlsetText format["Total: $%1", constructionstoreCart];
 		lbClear _cartlist;
-	};
-};
