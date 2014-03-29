@@ -92,7 +92,7 @@ _onCaptureStarted = {
     _territoryDescriptiveName = _this select 0;
     _ownerSideStr = _this select 1;
 
-    if (_side != "") then
+    if (_ownerSideStr != "") then
     {
         _sideObject = [_ownerSideStr] call _sideObjectForSideStr;
         _descriptiveSideName = [_ownerSideStr] call _nameForSideStr;
