@@ -39,17 +39,17 @@ if (fuel _vehicle > 0.10) then
 	}
 	else
 	{
-		hint "Vehicle too far away.";
+		hint "Move closer to the vehicle!";
 	};
 }
 else
 {
 	if (fuel _vehicle > 0) then
 	{
-		hint "No way I'll reach those last drops of fuel.";
+		hint "Cannot syphon! Fuel is too low...";
 	}
 	else
 	{
-		hint "No fuel in vehicle.";
+		hint "Cannot syphon! - Vehicle has no fuel left";
 	};
 };
