@@ -4,6 +4,7 @@
 * Important note : All the classes names which inherits from the ones used in configuration variables will be also available. *
 ******************************************************************************************************************************/
 
+diag_log format["****** R3F Config - Started ******"];
 
 // Can Tow, Tow-able objects:
 R3F_LOG_CFG_remorqueurs = [
@@ -265,3 +266,5 @@ R3F_LOG_CFG_objets_deplacables = [
 	"Land_Cargo_Tower_V1_F",
 	"Land_FuelStation_Feed_F"
 ];
+
+diag_log format["****** R3F Config - Ended Successfully ******"];

@@ -41,7 +41,7 @@ class R3F_LOG_dlg_contenu_vehicule
 		sizeEx = 0.023;
 		colorBackground[] = {0.5, 0.5, 0.5, 0};
 		colorText[] = {0.85, 0.85, 0.85, 1};
-		font = "TahomaB";
+		font = "PuristaMedium";
 		text = "";
 	};
 	
@@ -65,13 +65,15 @@ class R3F_LOG_dlg_contenu_vehicule
 		
 		color[] = {0.543, 0.5742, 0.4102, 1.0};
 		color2[] = {0.95, 0.95, 0.95, 1};
+		colorFocused[] = {0.543, 0.5742, 0.4102, 1.0};
 		colorBackground[] = {1, 1, 1, 1};
 		colorbackground2[] = {1, 1, 1, 0.4};
+		colorBackgroundFocused[] = {1, 1, 1, 1};
 		colorDisabled[] = {1, 1, 1, 0.25};
 		periodFocus = 1.2;
 		periodOver = 0.8;
-		colorFocused[] = { 1, 1, 1, 1 }; 			// added to fix the "No entry - colorFocused".
-		colorBackgroundFocused[] = { 1, 1, 1, 0.4 };	// source: http://forums.bistudio.com/showthread.php?172008-Error-dialog-menu-since-new-version&p=2606221
+//		colorFocused[] = { 1, 1, 1, 1 }; 			// added to fix the "No entry - colorFocused".
+//		colorBackgroundFocused[] = { 1, 1, 1, 0.4 };	// source: http://forums.bistudio.com/showthread.php?172008-Error-dialog-menu-since-new-version&p=2606221
 
 		
 		class HitZone 
@@ -93,20 +95,21 @@ class R3F_LOG_dlg_contenu_vehicule
 		class TextPos 
 		{
 			left = 0.05;
-			top = 0.034;
+			top = 0.019;
+//			top = 0.034;
 			right = 0.005;
 			bottom = 0.005;
 		};
 		
 		textureNoShortcut = "";
-		animTextureNormal = "client\ui\ui_button_normal_ca.paa";
-		animTextureDisabled = "client\ui\ui_button_disabled_ca.paa";
-		animTextureOver = "client\ui\ui_button_over_ca.paa";
-		animTextureFocused = "client\ui\ui_button_focus_ca.paa";
-		animTexturePressed = "client\ui\ui_button_down_ca.paa";
-		animTextureDefault = "client\ui\ui_button_default_ca.paa";
+		animTextureNormal = "client\ui\igui_button_normal_ca.paa";
+		animTextureDisabled = "client\ui\igui_button_disabled_ca.paa";
+		animTextureOver = "client\ui\igui_button_over_ca.paa";
+		animTextureFocused = "client\ui\igui_button_focus_ca.paa";
+		animTexturePressed = "client\ui\igui_button_down_ca.paa";
+		animTextureDefault = "client\ui\igui_button_normal_ca.paa";
 		period = 0.4;
-		font = "TahomaB";
+		font = "PuristaMedium";
 		
 		soundEnter[] = {"\A3\ui_f\data\Sound\MOUSE2", 0.09, 1};
 		soundPush[] = {"\A3\ui_f\data\Sound\NEW1", 0.09, 1};
@@ -120,7 +123,7 @@ class R3F_LOG_dlg_contenu_vehicule
 	
 		class Attributes 
 		{
-			font = "TahomaB";
+			font = "PuristaMedium";
 			color = "#E5E5E5";
 			align = "left";
 			shadow = "true";
@@ -128,7 +131,7 @@ class R3F_LOG_dlg_contenu_vehicule
 		
 		class AttributesImage 
 		{
-			font = "TahomaB";
+			font = "PuristaMedium";
 			color = "#E5E5E5";
 			align = "left";
 			shadow = "true";
@@ -145,7 +148,8 @@ class R3F_LOG_dlg_contenu_vehicule
 		h = 0.04;
 		colorSelect[] = {1, 1, 1, 1};
 		colorText[] = {1, 1, 1, 1};
-		colorBackground[] = {0.8,0.8,0.8,1};
+//		colorBackground[] = {0.8,0.8,0.8,1};
+		colorBackground[] = {0.5,0.5,0.5,1};
 		colorSelectBackground[] = {0, 0, 0, 1};
 		colorScrollbar[] = {0.2, 0.2, 0.2, 1};
 		arrowEmpty = "client\ui\ui_arrow_combo_ca.paa";
@@ -155,7 +159,7 @@ class R3F_LOG_dlg_contenu_vehicule
 		color[] = {0.8, 0.8, 0.8, 1};
 		colorActive[] = {0,0,0,1};
 		colorDisabled[] = {0,0,0,0.3};
-		font = "TahomaB";
+		font = "PuristaMedium";
 		sizeEx = 0.035;
 		soundSelect[] = {"",0.1,1};
 		soundExpand[] = {"",0.1,1};
@@ -179,7 +183,7 @@ class R3F_LOG_dlg_contenu_vehicule
 	// FIN Définition des classes de base
 	
 	
-	class R3F_LOG_dlg_CV_arriere_plan
+/*	class R3F_LOG_dlg_CV_arriere_plan
 	{
 		idc = -1;
 		type = CT_STATIC;
@@ -191,6 +195,20 @@ class R3F_LOG_dlg_contenu_vehicule
 		text = "\ca\ui\data\ui_gameoptions_background_ca.paa";
 		font = "TahomaB";
 		sizeEx = 0.032;
+	};*/
+	
+	class R3F_LOG_dlg_CV_arriere_plan
+	{
+		x = 0.2375; w = 0.5;
+		y = 0.1; h = 0.68;
+		colorBackground[] = {0, 0, 0, 0.6};
+		text              = "";
+		type              = CT_STATIC;
+		idc               = -1;
+		style             = ST_LEFT;
+		font              = "PuristaMedium";
+		colorText[]       = {1, 1, 1, 1};
+		sizeEx            = 0.04;
 	};
 	
 	class R3F_LOG_dlg_CV_titre : R3F_LOG_dlg_CV_texte

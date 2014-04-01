@@ -28,24 +28,21 @@ else
 	// It also stores on the network that the object is no longer attached
 	_objet setVariable ["R3F_LOG_est_transporte_par", objNull, true];
 
-	if ((velocity _heliporteur) call BIS_fnc_magnitude < 15 && getPos _heliporteur select 2 < 40) then
-	{
-		_airdrop = false;
-	}
-	else
-	{
-		_airdrop = true;
-	};
+	_velocity = velocity _objet;
 
-	if (local _objet) then
+	detach _objet;
+
+	sleep 0.1;
+
+/*	if ([0,0,0] distance velocity _heliporteur < 15 && getPos _heliporteur select 2 < 40) then
 	{
-		[netId _objet, _airdrop] execVM "server\functions\detachTowedObject.sqf";
+		_objet setPos [getPos _objet select 0, getPos _objet select 1, 1];
+		_objet setVelocity [0, 0, 0.1];
 	}
 	else
-	{
-		requestDetachTowedObject = [netId _objet, _airdrop];
-		publicVariable "requestDetachTowedObject";
-	};
+	{*/
+		_objet setVelocity _velocity;
+	//};
 
 	player globalChat format [STR_R3F_LOG_action_heliport_larguer_fait, getText (configFile >> "CfgVehicles" >> (typeOf _objet) >> "displayName")];		//"Object ""%1"" dropped."
 

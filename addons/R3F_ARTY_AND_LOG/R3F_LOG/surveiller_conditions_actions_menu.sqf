@@ -8,8 +8,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-private ["_objet_pointe"];
+private ["_objet_pointe", "_resetConditions"];
 
+_resetConditions =
+{
+	R3F_LOG_action_charger_deplace_valide = false;
+	R3F_LOG_action_charger_selection_valide = false;
+	R3F_LOG_action_contenu_vehicule_valide = false;
+	R3F_LOG_action_remorquer_deplace_valide = false;
+	R3F_LOG_action_remorquer_selection_valide = false;
+	R3F_LOG_action_selectionner_objet_remorque_valide = false;
+	R3F_LOG_action_heliporter_valide = false;
+	R3F_LOG_action_heliport_larguer_valide = false;
+};
 while {true} do
 {
 	R3F_LOG_objet_addAction = objNull;
@@ -18,8 +29,8 @@ while {true} do
 
 	if !(isNull _objet_pointe) then
 	{
-		//if (player distance _objet_pointe < 13) then
-		if (player distance _objet_pointe < 15 && {!isMultiplayer || {!local _objet_pointe} || {[":-", netId _objet_pointe] call fn_findString == -1}}) then
+		//if (player distance _objet_pointe < 14) then
+		if (player distance _objet_pointe < 7 && {!isMultiplayer || {!local _objet_pointe} || {[":-", netId _objet_pointe] call fn_findString == -1}}) then
 		{
 			R3F_LOG_objet_addAction = _objet_pointe;
 
@@ -44,13 +55,13 @@ while {true} do
 				{
 					// Condition action move towed
 					R3F_LOG_action_remorquer_deplace_valide = (vehicle player == player && (alive R3F_LOG_joueur_deplace_objet) &&
-						(count crew _objet_pointe == 0) && (R3F_LOG_joueur_deplace_objet == _objet_pointe) &&
+						(isNull driver _objet_pointe || {!isPlayer driver _objet_pointe && {getText (configFile >> "CfgVehicles" >> typeOf driver _objet_pointe >> "simulation") == "UAVPilot"}}) && (R3F_LOG_joueur_deplace_objet == _objet_pointe) &&
 						({_x != _objet_pointe && alive _x && isNull (_x getVariable "R3F_LOG_remorque") && ((velocity _x) call BIS_fnc_magnitude < 6) && (getPos _x select 2 < 2) && !(_x getVariable "R3F_LOG_disabled")} count (nearestObjects [_objet_pointe, R3F_LOG_CFG_remorqueurs, 18])) > 0 &&
 						!(_objet_pointe getVariable "R3F_LOG_disabled"));
 				};
 
 				// Condition action tow to select object
-				R3F_LOG_action_selectionner_objet_remorque_valide = (vehicle player == player && (alive _objet_pointe) && (count crew _objet_pointe == 0) &&
+				R3F_LOG_action_selectionner_objet_remorque_valide = (vehicle player == player && (alive _objet_pointe) && (isNull driver _objet_pointe || {!isPlayer driver _objet_pointe && {getText (configFile >> "CfgVehicles" >> typeOf driver _objet_pointe >> "simulation") == "UAVPilot"}}) &&
 					isNull R3F_LOG_joueur_deplace_objet && isNull (_objet_pointe getVariable "R3F_LOG_est_transporte_par") &&
 					(isNull (_objet_pointe getVariable "R3F_LOG_est_deplace_par") || (!alive (_objet_pointe getVariable "R3F_LOG_est_deplace_par"))) &&
 					!(_objet_pointe getVariable "R3F_LOG_disabled"));
@@ -120,20 +131,19 @@ while {true} do
 					((velocity _objet_pointe) call BIS_fnc_magnitude < 6) && (getPos _objet_pointe select 2 < 2) && !(_objet_pointe getVariable "R3F_LOG_disabled"));
 			};
 		};
+	}
+	else
+	{
+		call _resetConditions;
 	};
 
-	// For heliportation the object is no longer points but is in if the player is in a Helicarrier
+	// Heliportation for the object is not pointed but is in whether the player is in a Helicarrier
 	if ({(vehicle player) isKindOf _x} count R3F_LOG_CFG_heliporteurs > 0) then
 	{
 		R3F_LOG_objet_addAction = vehicle player;
 
 		// We are in the vehicle, displays no options for carrier and tow
-		R3F_LOG_action_charger_deplace_valide = false;
-		R3F_LOG_action_charger_selection_valide = false;
-		R3F_LOG_action_contenu_vehicule_valide = false;
-		R3F_LOG_action_remorquer_deplace_valide = false;
-		R3F_LOG_action_remorquer_selection_valide = false;
-		R3F_LOG_action_selectionner_objet_remorque_valide = false;
+		call _resetConditions;
 
 		// Condition Action transported by helicopter
 		R3F_LOG_action_heliporter_valide = (driver R3F_LOG_objet_addAction == player &&
@@ -142,7 +152,8 @@ while {true} do
 			!(R3F_LOG_objet_addAction getVariable "R3F_LOG_disabled"));
 
 		// Condition Action heliport drop
-		R3F_LOG_action_heliport_larguer_valide = (driver R3F_LOG_objet_addAction == player && !isNull (R3F_LOG_objet_addAction getVariable "R3F_LOG_heliporte") && ((velocity R3F_LOG_objet_addAction) call BIS_fnc_magnitude < 15) && (getPos R3F_LOG_objet_addAction select 2 < 40) && !(R3F_LOG_objet_addAction getVariable "R3F_LOG_disabled"));
+		R3F_LOG_action_heliport_larguer_valide = (driver R3F_LOG_objet_addAction == player && !isNull (R3F_LOG_objet_addAction getVariable "R3F_LOG_heliporte") &&
+			((velocity R3F_LOG_objet_addAction) call BIS_fnc_magnitude < 15) && (getPos R3F_LOG_objet_addAction select 2 < 30) && !(R3F_LOG_objet_addAction getVariable "R3F_LOG_disabled"));
 	};
 
 	sleep 0.3;

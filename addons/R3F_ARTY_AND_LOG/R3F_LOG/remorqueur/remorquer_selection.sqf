@@ -27,7 +27,7 @@ else
 	{
 		if (isNull (_objet getVariable "R3F_LOG_est_transporte_par") && (isNull (_objet getVariable "R3F_LOG_est_deplace_par") || (!alive (_objet getVariable "R3F_LOG_est_deplace_par")))) then
 		{
-			if (_objet distance _remorqueur <= 30) then
+			if (_objet distance _remorqueur <= 15) then		// Tow distance was 30, think that is a bit to far.
 			{
              	//The vehicle that is driving.
                 _tempobj = _remorqueur;		_countTransportedBy = 1;
@@ -44,16 +44,16 @@ else
 					// It also stores on the network that the barrel is attached to the trailer
 					_objet setVariable ["R3F_LOG_est_transporte_par", _remorqueur, true];
 
-					player switchMove "AinvPknlMstpSlayWrflDnon_medic";
+					player playMove "AinvPknlMstpSlayWrflDnon_medic";
 
-					/*player addEventHandler ["AnimDone",
+					player addEventHandler ["AnimDone",
 					{
 						if (_this select 1 == "AinvPknlMstpSlayWrflDnon_medic") then
 						{
 							player switchMove "";
 							player removeAllEventHandlers "AnimDone";
 						};
-					}];*/
+					}];
 
 					if ((getPosASL player) select 2 > 0) then
 					{
@@ -66,7 +66,7 @@ else
 						]];
 
 						player setDir 270;
-						player setPosATL (getPos player);
+						player setPos (getPos player);
 						sleep 0.05;
 						detach player;
 					};
@@ -149,8 +149,7 @@ else
 						};
 					};
 
-					sleep 5;
-					player switchMove "";
+					sleep 5;    
                 }
 				else
 				{

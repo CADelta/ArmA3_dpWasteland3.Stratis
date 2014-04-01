@@ -29,7 +29,7 @@
 			
 			// Orienter l'objet et broadcaster l'effet
 			_objet setDir _direction;
-			_objet setPosATL (getPos _objet);
+			_objet setPos (getPos _objet);
 		};
 		"R3F_ARTY_AND_LOG_PUBVAR_setDir" addPublicVariableEventHandler R3F_ARTY_AND_LOG_FNCT_PUBVAR_setDir;
 	};

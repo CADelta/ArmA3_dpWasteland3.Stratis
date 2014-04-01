@@ -80,6 +80,7 @@ else
 
 					player globalChat STR_R3F_LOG_action_charger_selection_en_cours;		//"Loading in progress..."
 
+					sleep 2;
 					// Choose a disengaged position (shpere 50 m radius) in the air in a cube 9km ^ 3
 					private ["_nb_tirage_pos", "_position_attache"];
 					_position_attache = [random 3000, random 3000, (10000 + (random 3000))];

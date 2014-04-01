@@ -21,7 +21,7 @@ else
 	_objet = R3F_LOG_joueur_deplace_objet;
 
 	_transporteur = nearestObjects [_objet, R3F_LOG_classes_transporteurs, 22];
-	// Because the carrier can Be a transportable object
+	// Because the carrier can be a transportable object
 	_transporteur = _transporteur - [_objet];
 
 	if (count _transporteur > 0) then
@@ -78,7 +78,6 @@ else
 					// This gives the object 2 hours extra time while inside the vehicle, so it does not despawn while being transported!  |  Tag: boxCreation.sqf
 					_objet setVariable ["timeout", (time + 7200), true];
 				};
-
 				player globalChat STR_R3F_LOG_action_charger_deplace_en_cours;		//"Loading in progress..."
 
 				// To let go of the player object (if it has in "hands")

@@ -1,9 +1,9 @@
 /**
  * @ file Name: deplacer.sqf
- * Fait d?placer un objet par le joueur. Il garde l'objet tant qu'il ne le rel?che pas ou ne meurt pas.
- * L'objet est relach? quand la variable R3F_LOG_joueur_deplace_objet passe ? objNull ce qui terminera le script
+ * Fait déplacer un objet par le joueur. Il garde l'objet tant qu'il ne le relâche pas ou ne meurt pas.
+ * L'objet est relaché quand la variable R3F_LOG_joueur_deplace_objet passe à objNull ce qui terminera le script
  *
- * @param 0 l'objet ? d?placer
+ * @param 0 l'objet à déplacer
  *
  * Copyright (C) 2010 madbull ~R3F~
  *
@@ -44,7 +44,7 @@ else
 	};
 	_objet setVariable ["R3F_Side", (playerSide), true];
 
-	// Si l'objet est un calculateur d'artillerie, on laisse le script sp?cialis? g?rer
+	// Si l'objet est un calculateur d'artillerie, on laisse le script spécialisé gérer
 	_est_calculateur = _objet getVariable "R3F_ARTY_est_calculateur";
 	if !(isNil "_est_calculateur") then
 	{
@@ -102,7 +102,7 @@ else
 				// Le canon doit pointer devant nous (sinon on a l'impression de se faire empaler)
 				_azimut_canon = ((_objet weaponDirection (weapons _objet select 0)) select 0) atan2 ((_objet weaponDirection (weapons _objet select 0)) select 1);
 
-				// On est oblig? de demander au serveur de tourner le canon pour nous
+				// On est obligé de demander au serveur de tourner le canon pour nous
 				R3F_ARTY_AND_LOG_PUBVAR_setDir = [_objet, (getDir _objet)-_azimut_canon];
 				if (isServer) then
 				{
@@ -123,7 +123,7 @@ else
 			_action_menu_90 = player addAction [("<img image='client\ui\r3f\r3f_rotate_90.paa'/> <t color='#dddd00'>Rotate object 90?</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\rotate.sqf", 90, 5, true, true];
 			_action_menu_180 = player addAction [("<img image='client\ui\r3f\r3f_rotate_180.paa'/> <t color='#dddd00'>Rotate object 180?</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\rotate.sqf", 180, 5, true, true];
 
-			// On limite la vitesse de marche et on interdit de monter dans un v?hicule tant que l'objet est port?
+			// On limite la vitesse de marche et on interdit de monter dans un véhicule tant que l'objet est porté
 			while {!isNull R3F_LOG_joueur_deplace_objet && alive player} do
 			{
 				if (vehicle player != player) then
@@ -143,7 +143,7 @@ else
 				sleep 0.25;
 			};
 
-			// L'objet n'est plus port?, on le repose
+			// L'objet n'est plus porté, on le repose
 			detach _objet;
 
 			// this addition comes from Sa-Matra (fixes the heigt of some of the objects) - all credits for this fix go to him!
