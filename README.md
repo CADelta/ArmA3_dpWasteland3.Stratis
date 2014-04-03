@@ -1,12 +1,26 @@
 ArmA3-dpWasteland3.Stratis
 ===========================
 
-ArmA3 - **dp Wasteland 3** - current build: **300**
+ArmA3 - **dp Wasteland 3** - current build: **301**
 
 Made by **CADelta**
 
 Changelog
 =====================================
+
+**3.0 (build 301)**
+* **[Added]** Chemlights in car loot.
+* **[Update]** Day/Night Cycle (75 Min Day and 30 Min Night).
+* **[Update]** Less Boat Spawns.
+* **[Update]** More Cars and Choppers Static Spawns.
+* **[Update]** New Scanner Soundclip (less annoying?).
+* **[Fixed]** Moved the Scanner to better fit in the UI for Group Leaders.
+* **[Fixed]** Towing - Vehicles can now be untowed again.
+* **[Fixed]** Vehicle Content GUI.
+* **[Fixed]** Issues with Vehicle Spawning.
+* **[Fixed]** Error in the Territory System.
+* **[Fixed]** Inability to buy Submachine Guns.
+* **[Fixed]** Issue were Players could not loot and other basic stuff.
 
 **3.0 (build 300)**
 * **[Added]** Revive System.

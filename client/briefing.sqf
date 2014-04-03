@@ -105,7 +105,20 @@ player createDiaryRecord["changelog",
 
 player createDiaryRecord["changelog",
 ["[CAD]","
-<br/>3.0<br/>
+<br/>Build: 301<br/>
+		[Added] Chemlights in car loot.<br/>
+		[Update] Day/Night Cycle (75 Min Day and 30 Min Night).<br/>
+		[Update] Less Boat Spawns.<br/>
+		[Update] More Cars and Choppers Static Spawns.<br/>
+		[Update] New Scanner Soundclip (less annoying?).<br/>
+		[Fixed] Moved the Scanner to better fit in the UI for Group Leaders.<br/>
+		[Fixed] Towing - Vehicles can now be untowed again.<br/>
+		[Fixed] Vehicle Content GUI.<br/>
+		[Fixed] Issues with Vehicle Spawning.<br/>
+		[Fixed] Error in the Territory System.<br/>
+		[Fixed] Inability to buy Submachine Guns.<br/>
+		[Fixed] Issue were Players could not loot and other basic stuff.<br/>
+<br/>Build: 300<br/>
 		[Added] Revive System.<br/>
 		[Added] Territory System.<br/>
 		[Added] Day/Night cycle.<br/>
@@ -138,7 +151,7 @@ player createDiaryRecord["changelog",
 		[Fixed] Non-burning vehicles no longer despawn right in front of you.<br/>
 		[Fixed] Towed vehicles no longer despawn.<br/>
 		[Fixed] Buildings and Crates loaded in vehicles now sync. for everyone.<br/>
-<br/>2.5.5<br/>
+<br/><br/>2.5.5<br/>
 		[Fixed] MX SW and MXM had switched names in the Gun Store.<br/>
 		[Fixed] Briefing on the map screen got duplicated again and again after respawning.<br/>
 		[Update] Prices on Grenades have been reduced a bit and Stone is now called Decoy Grenade (which it is).<br/>
