@@ -31,6 +31,22 @@ for [{_x = 0}, {_x <= _size}, {_x = _x + 1}] do
 
 			_playerSlots = [player] call BIS_fnc_invSlotsEmpty;
 
+			//Primary Weapon
+			if (_type == 1) then
+			{
+				//if ((_playerSlots select 0) >= 1) then
+				if ((primaryWeapon player) == "") then
+				{
+					player addWeapon _class;
+				}
+				else
+				{
+					{if (_x select 0 == _class) then {_price = _x select 2; _name = _x select 1;};}forEach riflesArray;
+					gunStoreCart = gunStoreCart - _price;
+					hint format ["You do not have space for this Rifle: %1",_name];
+				};
+			};
+
 			//Side Arm
 			if (_type == 2) then
 			{
