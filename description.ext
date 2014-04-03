@@ -70,7 +70,7 @@ class CfgSounds
 		name = "scanner_beep";
 		// filename, volume, pitch
 		//sound[] = {"fx\beep-01.wav", 1, 1};		// http://www.mediacollege.com/downloads/sound-effects/beep/
-		sound[] = {"fx\MilCom_Scanner30sec.ogg", 1, 1};		// ♫ Edited and put together by [CAD] Krycek ♫
+		sound[] = {"fx\MilCom_Scanner30sec_beepOnly.ogg", 1, 1};		// ♫ Edited and put together by [CAD] Krycek ♫
 		titles[] = {};
 	};
 };
