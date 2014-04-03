@@ -77,9 +77,10 @@ createGunStoreMarkers = compileFinal preprocessFileLineNumbers "client\functions
 createGeneralStoreMarkers = compileFinal preprocessFileLineNumbers "client\functions\createGeneralStoreMarkers.sqf";
 createConstructionStoreMarkers = compileFinal preprocessFileLineNumbers "client\functions\createConstructionStoreMarkers.sqf";
 
-// 3rd Party (used in R3F)
+// 3rd Party (Some used in R3F)
 fn_findString = compileFinal preprocessFileLineNumbers "client\functions\fn_findString.sqf";
-fn_filterString = compileFinal preprocessFileLineNumbers "client\functions\fn_filterString.sqf";
+
+getPublicVar = compileFinal preprocessFileLineNumbers "client\functions\getPublicVar.sqf";		// Used in Territory System!
 
 playerCompiledScripts = true;
 

@@ -47,7 +47,6 @@
 // In addition, the server gives each player a TERRITORY_ACTIVITY variable which
 // denotes capture activity
 
-
 // timings
 #define BASE_SLEEP_INTERVAL 10
 #define CAPTURE_PERIOD 300
@@ -86,7 +85,8 @@ _newPlayersWithTerritoryActivity = [];
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Trigger for when a capture of a territory has started
-_onCaptureStarted = {
+_onCaptureStarted =
+{
     private['_territoryDescriptiveName', '_ownerSideStr', '_msg', '_sideObject', '_descriptiveSideName'];
 
     _territoryDescriptiveName = _this select 0;
@@ -102,7 +102,8 @@ _onCaptureStarted = {
 };
 
 // Trigger for when a capture of a territory has ended.
-_onCaptureFinished = {
+_onCaptureFinished =
+{
     private['_captureSideStr', '_captureValue', '_captureDescription', '_descriptiveSideName', '_msg', '_otherSides', '_msgOthers'];
 
     //diag_log format['_onCapture called with %1', _this];
@@ -123,7 +124,8 @@ _onCaptureFinished = {
 };
 
 // Gives the side object for a side string
-_sideObjectForSideStr = {
+_sideObjectForSideStr =
+{
     private['_side', '_sideStr'];
     _sideStr = _this select 0;
 
@@ -131,15 +133,16 @@ _sideObjectForSideStr = {
 
     switch (_sideStr) do
     {
-        case "WEST": {_sideObj = west;};
-        case "EAST": {_sideObj = east;};
-        case "GUER": {_sideObj = resistance;};
+        case "WEST": { _sideObj = west };
+        case "EAST": { _sideObj = east };
+        case "GUER": { _sideObj = resistance };
     };
     _sideObj
 };
 
 // Give the human readable name for a side
-_nameForSideStr = {
+_nameForSideStr =
+{
     private['_side', '_sideName'];
     _side = _this select 0;
     //diag_log format["_nameForSideStr called with %1", _this];
@@ -147,10 +150,10 @@ _nameForSideStr = {
     _sideName = "";
     switch (_side) do
     {
-        case "WEST": {_sideName = "BLUFOR";};
-        case "EAST": {_sideName = "OPFOR";};
-        case "GUER": {_sideName = "Independent";};
-        default {_sideName = "";};
+        case "WEST": { _sideName = "BLUFOR" };
+        case "EAST": { _sideName = "OPFOR" };
+        case "GUER": { _sideName = "Independent" };
+        default      { _sideName = "" };
     };
 
     //diag_log format["_nameForSideStr returning %1", _markerColor];
@@ -159,7 +162,8 @@ _nameForSideStr = {
 };
 
 // Give the marker colour for a side. Also duplicated in territory/client/updateConnectingClients.sqf
-_markerColorForSideStr = {
+_markerColorForSideStr =
+{
     private['_side', '_markerColor'];
     _side = _this select 0;
     //diag_log format["_markerColorForSideStr called with %1", _this];
@@ -167,10 +171,10 @@ _markerColorForSideStr = {
     _markerColor = "";
     switch (_side) do
     {
-        case "WEST": {_markerColor = "colorblue";};
-        case "EAST": {_markerColor = "colorred";};
-        case "GUER": {_markerColor = "colorgreen";};
-        default {_markerColor = "coloryellow";};
+        case "WEST": { _markerColor = "colorblue" };
+        case "EAST": { _markerColor = "colorred" };
+        case "GUER": { _markerColor = "colorgreen" };
+        default      { _markerColor = "coloryellow" };
     };
 
     //diag_log format["_markerColorForSideStr returning %1", _markerColor];
@@ -180,7 +184,8 @@ _markerColorForSideStr = {
 
 // Count players in a particular area for each side, and calculate if its
 // uncontested or contested, and whether there's a dominant side
-_sideCountsForPlayerArray = {
+_sideCountsForPlayerArray =
+{
     //diag_log format["_sideCountsForPlayerArray called with %1", _this];
 
     private['_players', '_blueCount', '_redCount', '_greenCount', '_contested'];
@@ -196,31 +201,27 @@ _sideCountsForPlayerArray = {
     if (count _players > 0) then
     {
         {
-            switch(str(side _x)) do
+            switch (side _x) do
             {
-                case "WEST": {_blueCount = _blueCount + 1;};
-                case "EAST": {_redCount = _redCount + 1;};
-                case "GUER": {_greenCount = _greenCount + 1;};
+                case west:       { _blueCount = _blueCount + 1 };
+                case east:       { _redCount = _redCount + 1 };
+                case resistance: { _greenCount = _greenCount + 1 };
             };
         } forEach _players;
 
-        if ((_blueCount > 0 && (_redCount > 0 || _greenCount > 0)) || (_redCount > 0 && (_blueCount > 0 || _greenCount > 0)) || (_greenCount > 0 && (_blueCount > 0 || _redCount > 0))) then
+        if ((_blueCount > 0 && _redCount > 0) ||
+            (_redCount > 0 && _greenCount > 0) ||
+            (_greenCount > 0 && _blueCount > 0)) then
         {
             _contested = true;
         };
 
-        if (_blueCount > 0 && !_contested) then
+		switch (true) do
         {
-            _dominantSide = "WEST";
-        };
-        if (_redCount > 0 && !_contested) then
-        {
-            _dominantSide = "EAST";
-        };
-        if (_greenCount > 0 && !_contested) then
-        {
-            _dominantSide = "GUER";
-        };
+			case(_blueCount > 0 && !_contested):   { _dominantSide = "WEST" };
+			case (_redCount > 0 && !_contested):   { _dominantSide = "EAST" };
+			case (_greenCount > 0 && !_contested): { _dominantSide = "GUER" };
+		}
     };
 
     [_blueCount, _redCount, _greenCount, _contested, _dominantSide]
@@ -230,7 +231,8 @@ _sideCountsForPlayerArray = {
 // and then whether there has been a change since last tick.
 //
 // This results in an action to take, either 'RESET', 'CONTINUE' or 'BLOCK'
-_handleSideCounts = {
+_handleSideCounts =
+{
     //diag_log format["_handleSideCounts called with %1", _this];
 
     // We could do something more crazy here like use the player counts to scale cap times
@@ -289,7 +291,8 @@ _handleSideCounts = {
     _action
 };
 
-_updatePlayerTerritoryActivity = {
+_updatePlayerTerritoryActivity =
+{
     private['_newTerritoryOccupiers', '_action', '_currentTerritoryOwner', '_newDominantSide'];
 
     //diag_log format["_updatePlayerTerritoryActivity given %1", _this];
@@ -308,9 +311,11 @@ _updatePlayerTerritoryActivity = {
         _attacker = 0;
 
         // if contested
-        if (_action == "BLOCK") then {
+        if (_action == "BLOCK") then
+		{
             // Is the player on the owner side?
-            if (_currentTerritoryOwner != str(side _x)) then {
+            if (_currentTerritoryOwner != str(side _x)) then
+			{
                 _attacker = 1;
             };
         };
@@ -318,21 +323,30 @@ _updatePlayerTerritoryActivity = {
         _territoryActivity = [];
 
         // Set a variable on them to indicate blocked capping
-        if (_currentTerritoryOwner != _newDominantSide) then {
-            if (_action == "BLOCK") then {
+        if (_currentTerritoryOwner != _newDominantSide) then
+		{
+            if (_action == "BLOCK") then
+			{
                 // We split a BLOCK state into defenders and attackers
-                if (_attacker == 1) then {
+                if (_attacker == 1) then
+				{
                     _territoryActivity set [0, "BLOCKEDATTACKER"];
-                } else {
+                }
+				else
+				{
                     _territoryActivity set [0, "BLOCKEDDEFENDER"];
                 };
-            } else {
+            }
+			else
+			{
                     _territoryActivity set [0, _action];
             };
 
             _territoryActivity set [1, CAPTURE_PERIOD - _newCapPointTimer];
             _newPlayersWithTerritoryActivity set [count _newPlayersWithTerritoryActivity, _playerUID];
-        } else {
+        }
+		else
+		{
             // Nothing to do!
         };
 
@@ -343,10 +357,7 @@ _updatePlayerTerritoryActivity = {
 
 
 _handleCapPointTick = {
-    private["_currentTerritoryData","_newTerritoryData","_count","_currentTerritoryDetails","_i",
-    "_currentTerritoryName","_currentTerritoryOccupiers","_currentTerritoryTimer","_newTerritoryDetails","_newTerritoryDetails","_newTerritoryName",
-    "_newTerritoryOccupiers","_currentSideCounts","_newSideCounts","_newDominantSide","_currentDominantSide","_action","_curCapPointTimer",
-    "_newMarkerColor","_playerUIDs","_msg","_configEntry", "_capturePointHumanName","_value"];
+    private ["_currentTerritoryData", "_newTerritoryData", "_count", "_currentTerritoryDetails", "_i", "_currentTerritoryName", "_currentTerritoryOccupiers", "_currentTerritoryTimer", "_newTerritoryDetails", "_newTerritoryDetails", "_newTerritoryName", "_newTerritoryOccupiers", "_currentSideCounts", "_newSideCounts", "_newDominantSide", "_currentDominantSide", "_action", "_curCapPointTimer", "_newMarkerColor", "_playerUIDs", "_msg", "_configEntry", "_capturePointHumanName", "_value"];
 
     //diag_log format["_handleCapPointTick called with %1", _this];
 
@@ -369,7 +380,8 @@ _handleCapPointTick = {
     // Known to be the same as _currentTerritoryData
     _count = count _currentTerritoryData;
 
-    for "_i" from 0 to (_count-1) do {
+    for "_i" from 0 to (_count - 1) do
+	{
         _loopStart = diag_tickTime;
 
         _currentTerritoryDetails = _currentTerritoryData select _i;
@@ -392,8 +404,8 @@ _handleCapPointTick = {
         //diag_log format["BIS_fnc_conditionalSelect found _newTerritoryDetails as %1", _newTerritoryDetails];
 
         // We have people at this territory?
-        if (count _newTerritoryData > 0 && { count _newTerritoryDetails > 0 }) then {
-
+        if (count _newTerritoryData > 0 && { count _newTerritoryDetails > 0 }) then
+		{
             _newTerritoryDetails = _newTerritoryDetails select 0;
 
             _newTerritoryName = _newTerritoryDetails select 0;
@@ -417,15 +429,16 @@ _handleCapPointTick = {
             //diag_log format["_newContestedStatus is %1, _currentTerritoryOwner is %2, _newDominantSide is %3, action is %4", _newContestedStatus, _currentTerritoryOwner, _newDominantSide, _action];
             ////////////////////////////////////////////////////////////////////////
 
-            if (_newContestedStatus || {(_currentTerritoryOwner != _newDominantSide)}) then {
-
-                if (_action == "CAPTURE") then {
-
-                    if (_currentTerritoryTimer == 0 && {_currentTerritoryOwner != ""}) then {
+            if (_newContestedStatus || {(_currentTerritoryOwner != _newDominantSide)}) then
+			{
+                if (_action == "CAPTURE") then
+				{
+                    if (_currentTerritoryTimer == 0 && {_currentTerritoryOwner != ""}) then
+					{
                        // Just started capping. Let the current owners know!
                         _currentDominantSideName = [_currentDominantSide] call _nameForSideStr;
 
-                        _configEntry = [(call config_territory_markers), { _x select 0 == _currentTerritoryName }] call BIS_fnc_conditionalSelect;
+                        _configEntry = [["config_territory_markers", []] call getPublicVar, { _x select 0 == _currentTerritoryName }] call BIS_fnc_conditionalSelect;
                         _territoryDescriptiveName = (_configEntry select 0) select 1;
 
                         [_territoryDescriptiveName, _currentTerritoryOwner] call _onCaptureStarted;
@@ -434,26 +447,30 @@ _handleCapPointTick = {
                     _newCapPointTimer = _newCapPointTimer + realLoopTime
                 };
 
-                if (_action == "RESET") then {
+                if (_action == "RESET") then
+				{
                     _newCapPointTimer = 0;
                 };
 
-                if (_action == "BLOCK") then {
+                if (_action == "BLOCK") then
+				{
                     // No action
                 };
 
                 //diag_log format["---> %1 action is %2 with the timer at %3", _currentTerritoryName, _action, _newCapPointTimer];
 
-                if (_newCapPointTimer >= CAPTURE_PERIOD) then {
+                if (_newCapPointTimer >= CAPTURE_PERIOD) then
+				{
                     // Find the current marker color which denotes capture status
                      _newMarkerColor = [_newDominantSide] call _markerColorForSideStr;
 
-                    if (getMarkerColor _currentTerritoryName != _newMarkerColor) then {
+                    if (getMarkerColor _currentTerritoryName != _newMarkerColor) then
+					{
                         // If the timer is above what we consider a successful capture and its not already theirs...
                         _currentTerritoryName setMarkerColor _newMarkerColor;
                         _currentTerritoryOwner = _newDominantSide;
 
-                        _configEntry = [(call config_territory_markers), { _x select 0 == _currentTerritoryName }] call BIS_fnc_conditionalSelect;
+                        _configEntry = [["config_territory_markers", []] call getPublicVar, { _x select 0 == _currentTerritoryName }] call BIS_fnc_conditionalSelect;
                         _territoryDescriptiveName = (_configEntry select 0) select 1;
                         _value = (_configEntry select 0) select 2;
 
@@ -467,8 +484,9 @@ _handleCapPointTick = {
                 };
 
                 [_currentTerritoryOwner, _newTerritoryOccupiers, _newDominantSide, _action] call _updatePlayerTerritoryActivity;
-
-            } else {
+            }
+			else
+			{
                 // Either there's nobody there, or its filled with the current dominant side
                 _currentTerritoryData set [_i, [_currentTerritoryName, [], 0, _currentTerritoryOwner] ];
             };
@@ -476,7 +494,9 @@ _handleCapPointTick = {
             // Now ensure we're creating a mirror of _currentTerritoryDetails with all the new info so we can assign it
             // at the end of this iteration
             _currentTerritoryData set [_i, [_currentTerritoryName, _newTerritoryOccupiers, _newCapPointTimer, _currentTerritoryOwner] ];
-        } else {
+        }
+		else
+		{
             // Nobody there
             _currentTerritoryData set [_i, [_currentTerritoryName, [], 0, _currentTerritoryOwner] ];
         };
@@ -504,7 +524,8 @@ while {true} do
     {
         private ['_curCapPoint', '_uid'];
 
-        if (alive _x) then {
+        if (alive _x) then
+		{
             // We don't see dead people. Hahaha...ha!
             _curCapPoint = _x getVariable ['TERRITORY_OCCUPATION', ''];
             if (_curCapPoint != "") then
