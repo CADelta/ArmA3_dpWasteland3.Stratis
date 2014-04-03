@@ -34,7 +34,7 @@ class RscTitles
 	#include "client\gui\playerMenu\dialog\welcome.hpp"
 };
 
-onLoadName = "dp Wasteland v3.0";
+onLoadName = "dp Wasteland 3.0";
 author = "CADelta";
 loadScreen = "Loading.jpg";
 onLoadMission = "Wasteland is a harsh survival sandbox where 2 teams and independent players fight for survival";
@@ -56,7 +56,7 @@ enableItemsDropping = 0;
 scriptedPlayer = 1;
 
 //*** DEBUG ENABLED ***
-enableDebugConsole = 0;			// 0 = Disabled, 1 = Admins Only, 2 = All.
+enableDebugConsole = 1;			// 0 = Disabled, 1 = Admins Only, 2 = All.
 //*** REMEMBER TO DISABLE ***
 
 allowFunctionsLog = 0;			// Org = 0

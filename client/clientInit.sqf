@@ -102,7 +102,7 @@ if (count (call config_territory_markers) > 0) then
 [] spawn {_objects = nearestObjects [getMarkerPos "Town_1", ["House_F"], 28000]; {_x allowDamage false;sleep 0.01;} forEach _objects;};									// I believe this sets every building to be invulnerable and I have removed enableSimulation false, since the previously know performance gain does not apply anymore. It's now part of the netcode :)	***CAD***
 
 // Player setup
-sleep 2;
+//sleep 2;
 [] call PlayerSetup;
 [] spawn createMenuActions;
 [] spawn initSurvival;

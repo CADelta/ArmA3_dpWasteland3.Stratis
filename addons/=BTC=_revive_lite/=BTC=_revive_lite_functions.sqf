@@ -410,7 +410,7 @@ BTC_drag =
 		if (count _array_veh > 0 && _veh_selected != _array_veh select 0) then
 		{
 			_veh_selected    = _array_veh select 0;
-			_name_veh        = getText (configFile >> "cfgVehicles" >> typeof _veh_selected >> "displayName");
+			_name_veh        = getText (configFile >> "CfgVehicles" >> typeof _veh_selected >> "displayName");
 			_text_action     = ("<t color=""#ED2744"">" + "Load wounded in " + (_name_veh) + "</t>");
 			_action_id = player addAction [_text_action,"addons\=BTC=_revive_lite\=BTC=_revive_lite_addAction.sqf",[[_injured,_veh_selected],BTC_load_in], 7, true, true];
 			_act  = 1;
