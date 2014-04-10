@@ -1,4 +1,4 @@
-﻿//  @file Name: =BTC=_revive_lite_respawn.h
+//  @file Name: =BTC=_revive_lite_respawn.h
 
 class BTC_r_shortcutButton 
 {
